@@ -9,7 +9,8 @@ PHP client for [Azure Repos](https://learn.microsoft.com/en-us/rest/api/azure/de
 
 ## Installation
 
-This is a development only "require-dev" library:
+Require the library in your project:
+
 ```
-composer require --dev spryker-sdk/azure-php-client
+composer require spryker-sdk/azure-php-client
 ```
