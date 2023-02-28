@@ -1,0 +1,11 @@
+.idea/
+vendor/
+var/
+
+.DS_Store
+
+# tests
+tests/_output/*
+!tests/_output/.gitkeep
+
+/.phpunit.result.cache
