@@ -7,17 +7,16 @@
 
 declare(strict_types=1);
 
-namespace SprykerAzure\Api\PullRequestApi;
+namespace SprykerAzure\Api\RepositoryApi;
 
 use SprykerAzure\Api\RepositoryPath;
 
-interface PullRequestApiInterface
+interface RepositoryApiInterface
 {
     /**
      * @param \SprykerAzure\Api\RepositoryPath $targetRepository
-     * @param \SprykerAzure\Api\PullRequestApi\PullRequestData $pullRequestData
      *
      * @return array<mixed>
      */
-    public function createPullRequest(RepositoryPath $targetRepository, PullRequestData $pullRequestData): array;
+    public function getRepositoryInfo(RepositoryPath $targetRepository): array;
 }

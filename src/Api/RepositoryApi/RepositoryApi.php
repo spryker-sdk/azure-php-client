@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerAzure\Api\PullRequestApi;
+namespace SprykerAzure\Api\RepositoryApi;
 
 use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Client\ClientInterface;
@@ -16,13 +16,8 @@ use SprykerAzure\Api\RepositoryPath;
 use SprykerAzure\Client\Builder\RequestBuilderInterface;
 use SprykerAzure\Client\Builder\ResponseDataBuilderInterface;
 
-class PullRequestApi implements PullRequestApiInterface
+class RepositoryApi implements RepositoryApiInterface
 {
-    /**
-     * @var string
-     */
-    protected const REF_HEADS_PREFIX = 'refs/heads/';
-
     /**
      * @var \Psr\Http\Client\ClientInterface
      */
@@ -55,17 +50,14 @@ class PullRequestApi implements PullRequestApiInterface
 
     /**
      * @param \SprykerAzure\Api\RepositoryPath $targetRepository
-     * @param \SprykerAzure\Api\PullRequestApi\PullRequestData $pullRequestData
      *
      * @return array<mixed>
      */
-    public function createPullRequest(RepositoryPath $targetRepository, PullRequestData $pullRequestData): array
+    public function getRepositoryInfo(RepositoryPath $targetRepository): array
     {
         $request = $this->requestBuilder->getRequest(
-            'POST',
+            'GET',
             $this->createUrlPath($targetRepository),
-            [],
-            $this->serializePullRequestData($pullRequestData),
         );
 
         $response = $this->httpClient->sendRequest($request);
@@ -82,35 +74,11 @@ class PullRequestApi implements PullRequestApiInterface
     {
         return new Uri(
             sprintf(
-                '/%s/%s/_apis/git/repositories/%s/pullrequests',
+                '/%s/%s/_apis/git/repositories/%s',
                 $targetRepository->getOrganizationName(),
                 $targetRepository->getProjectName(),
                 $targetRepository->getRepositoryId(),
             ),
         );
-    }
-
-    /**
-     * @param \SprykerAzure\Api\PullRequestApi\PullRequestData $pullRequestData
-     *
-     * @return string
-     */
-    protected function serializePullRequestData(PullRequestData $pullRequestData): string
-    {
-        $data = [
-            'sourceRefName' => strpos($pullRequestData->getSourceBranch(), static::REF_HEADS_PREFIX) !== 0
-                ? static::REF_HEADS_PREFIX . $pullRequestData->getSourceBranch()
-                : $pullRequestData->getSourceBranch(),
-            'targetRefName' => strpos($pullRequestData->getTargetBranch(), static::REF_HEADS_PREFIX) !== 0
-                ? static::REF_HEADS_PREFIX . $pullRequestData->getTargetBranch()
-                : $pullRequestData->getTargetBranch(),
-            'title' => $pullRequestData->getTitle(),
-        ];
-
-        if ($pullRequestData->getDescription() !== null) {
-            $data['description'] = $pullRequestData->getDescription();
-        }
-
-        return json_encode($data, \JSON_THROW_ON_ERROR);
     }
 }

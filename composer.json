@@ -18,12 +18,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Azure\\": "src/"
+            "SprykerAzure\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Azure\\": "tests/"
+            "SprykerAzureTest\\": "tests/"
         }
     },
     "config": {

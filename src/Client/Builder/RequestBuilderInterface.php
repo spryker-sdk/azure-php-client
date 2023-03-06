@@ -1,14 +1,22 @@
 <?php
 
-namespace Azure\Client\RequestBuilder;
+/**
+ * Copyright © 2016-present Spryker Systems GmbH. All rights reserved.
+ * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
+ */
+
+declare(strict_types=1);
+
+namespace SprykerAzure\Client\Builder;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
+use SprykerAzure\Client\Builder\Plugin\RequestPluginInterface;
 
 interface RequestBuilderInterface
 {
     /**
-     * @param \Azure\Client\RequestBuilder\RequestPluginInterface $requestPlugin
+     * @param \SprykerAzure\Client\Builder\Plugin\RequestPluginInterface $requestPlugin
      *
      * @return void
      */
