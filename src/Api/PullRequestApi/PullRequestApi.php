@@ -26,6 +26,11 @@ class PullRequestApi implements PullRequestApiInterface
     /**
      * @var string
      */
+    protected const API_ENDPOINT_URL = '/%s/%s/_apis/git/repositories/%s/pullrequests';
+
+    /**
+     * @var string
+     */
     protected const REF_HEADS_PREFIX = 'refs/heads/';
 
     /**
@@ -89,7 +94,7 @@ class PullRequestApi implements PullRequestApiInterface
     {
         return new Uri(
             sprintf(
-                '/%s/%s/_apis/git/repositories/%s/pullrequests',
+                static::API_ENDPOINT_URL,
                 $targetRepository->getOrganizationName(),
                 $targetRepository->getProjectName(),
                 $targetRepository->getRepositoryId(),

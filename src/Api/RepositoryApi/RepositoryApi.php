@@ -19,6 +19,11 @@ use SprykerAzure\Client\Builder\ResponseDataBuilderInterface;
 class RepositoryApi implements RepositoryApiInterface
 {
     /**
+     * @var string
+     */
+    protected const API_ENDPOINT_URL = '/%s/%s/_apis/git/repositories/%s';
+
+    /**
      * @var \Psr\Http\Client\ClientInterface
      */
     protected ClientInterface $httpClient;
@@ -74,7 +79,7 @@ class RepositoryApi implements RepositoryApiInterface
     {
         return new Uri(
             sprintf(
-                '/%s/%s/_apis/git/repositories/%s',
+                static::API_ENDPOINT_URL,
                 $targetRepository->getOrganizationName(),
                 $targetRepository->getProjectName(),
                 $targetRepository->getRepositoryId(),
