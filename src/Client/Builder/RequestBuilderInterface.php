@@ -11,12 +11,12 @@ namespace SprykerAzure\Client\Builder;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use SprykerAzure\Client\Builder\Plugin\RequestPluginInterface;
+use SprykerAzure\Client\Plugin\Request\RequestPluginInterface;
 
 interface RequestBuilderInterface
 {
     /**
-     * @param \SprykerAzure\Client\Builder\Plugin\RequestPluginInterface $requestPlugin
+     * @param \SprykerAzure\Client\Plugin\Request\RequestPluginInterface $requestPlugin
      *
      * @return void
      */

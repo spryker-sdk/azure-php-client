@@ -11,11 +11,11 @@ namespace SprykerAzureTest\Client\Builder\Plugin;
 
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
-use SprykerAzure\Client\Builder\Plugin\ResponseThrowablePlugin;
+use SprykerAzure\Client\Plugin\Response\ResponseStatusCheckPlugin;
 use SprykerAzure\Exception\InvalidClientRequestException;
 use SprykerAzure\Exception\ServerErrorResponseException;
 
-class ResponseThrowablePluginTest extends TestCase
+class ResponseStatusCheckPluginTest extends TestCase
 {
     /**
      * @return void
@@ -24,7 +24,7 @@ class ResponseThrowablePluginTest extends TestCase
     {
         // Arrange
         $response = new Response(400, [], '');
-        $plugin = new ResponseThrowablePlugin();
+        $plugin = new ResponseStatusCheckPlugin();
 
         $this->expectException(InvalidClientRequestException::class);
 
@@ -39,7 +39,7 @@ class ResponseThrowablePluginTest extends TestCase
     {
         // Arrange
         $response = new Response(500, [], '');
-        $plugin = new ResponseThrowablePlugin();
+        $plugin = new ResponseStatusCheckPlugin();
 
         $this->expectException(ServerErrorResponseException::class);
 

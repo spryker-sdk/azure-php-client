@@ -18,7 +18,7 @@ composer require spryker-sdk/azure-php-client
 ## Usage
 
 ```php
-use SprykerAzure\Client\Builder\Plugin\PersonalAccessTokenAuthPlugin;
+use SprykerAzure\Client\Plugin\Request\PersonalAccessTokenAuthPlugin;
 use SprykerAzure\Client\ClientFactory;
 
 $clientFactory = new ClientFactory();

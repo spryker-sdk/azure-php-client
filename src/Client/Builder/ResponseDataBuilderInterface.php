@@ -10,12 +10,12 @@ declare(strict_types=1);
 namespace SprykerAzure\Client\Builder;
 
 use Psr\Http\Message\ResponseInterface;
-use SprykerAzure\Client\Builder\Plugin\ResponsePluginInterface;
+use SprykerAzure\Client\Plugin\Response\ResponsePluginInterface;
 
 interface ResponseDataBuilderInterface
 {
     /**
-     * @param \SprykerAzure\Client\Builder\Plugin\ResponsePluginInterface $responsePlugin
+     * @param \SprykerAzure\Client\Plugin\Response\ResponsePluginInterface $responsePlugin
      *
      * @return void
      */

@@ -7,28 +7,23 @@
 
 declare(strict_types=1);
 
-namespace SprykerAzure\Client\Builder\Plugin;
+namespace SprykerAzure\Client\Plugin\Request;
 
 use Psr\Http\Message\RequestInterface;
 
-class ApiVersionPlugin implements RequestPluginInterface
+class PersonalAccessTokenAuthPlugin implements RequestPluginInterface
 {
     /**
      * @var string
      */
-    protected const DEFAULT_API_VERSION = '7.0';
+    protected string $personalAccessToken;
 
     /**
-     * @var string
+     * @param string $personalAccessToken
      */
-    protected string $apiVersion;
-
-    /**
-     * @param string $apiVersion
-     */
-    public function __construct(string $apiVersion = self::DEFAULT_API_VERSION)
+    public function __construct(string $personalAccessToken)
     {
-        $this->apiVersion = $apiVersion;
+        $this->personalAccessToken = $personalAccessToken;
     }
 
     /**
@@ -38,8 +33,6 @@ class ApiVersionPlugin implements RequestPluginInterface
      */
     public function apply(RequestInterface $request): RequestInterface
     {
-        $uri = $request->getUri()->withQuery(sprintf('api-version=%s', $this->apiVersion));
-
-        return $request->withUri($uri);
+        return $request->withHeader('Authorization', 'Basic ' . base64_encode(':' . $this->personalAccessToken));
     }
 }

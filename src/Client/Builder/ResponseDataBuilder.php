@@ -10,17 +10,17 @@ declare(strict_types=1);
 namespace SprykerAzure\Client\Builder;
 
 use Psr\Http\Message\ResponseInterface;
-use SprykerAzure\Client\Builder\Plugin\ResponsePluginInterface;
+use SprykerAzure\Client\Plugin\Response\ResponsePluginInterface;
 
 class ResponseDataBuilder implements ResponseDataBuilderInterface
 {
     /**
-     * @var array<\SprykerAzure\Client\Builder\Plugin\ResponsePluginInterface>
+     * @var array<\SprykerAzure\Client\Plugin\Response\ResponsePluginInterface>
      */
     protected array $responsePlugins = [];
 
     /**
-     * @param array<\SprykerAzure\Client\Builder\Plugin\ResponsePluginInterface> $responsePlugins
+     * @param array<\SprykerAzure\Client\Plugin\Response\ResponsePluginInterface> $responsePlugins
      */
     public function __construct(array $responsePlugins = [])
     {
@@ -28,7 +28,7 @@ class ResponseDataBuilder implements ResponseDataBuilderInterface
     }
 
     /**
-     * @param \SprykerAzure\Client\Builder\Plugin\ResponsePluginInterface $responsePlugin
+     * @param \SprykerAzure\Client\Plugin\Response\ResponsePluginInterface $responsePlugin
      *
      * @return void
      */

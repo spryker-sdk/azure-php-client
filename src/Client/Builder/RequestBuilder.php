@@ -12,17 +12,17 @@ namespace SprykerAzure\Client\Builder;
 use GuzzleHttp\Psr7\ServerRequest;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
-use SprykerAzure\Client\Builder\Plugin\RequestPluginInterface;
+use SprykerAzure\Client\Plugin\Request\RequestPluginInterface;
 
 class RequestBuilder implements RequestBuilderInterface
 {
     /**
-     * @var array<\SprykerAzure\Client\Builder\Plugin\RequestPluginInterface>
+     * @var array<\SprykerAzure\Client\Plugin\Request\RequestPluginInterface>
      */
     protected array $requestPlugins = [];
 
     /**
-     * @param array<\SprykerAzure\Client\Builder\Plugin\RequestPluginInterface> $requestPlugins
+     * @param array<\SprykerAzure\Client\Plugin\Request\RequestPluginInterface> $requestPlugins
      */
     public function __construct(array $requestPlugins = [])
     {
@@ -30,7 +30,7 @@ class RequestBuilder implements RequestBuilderInterface
     }
 
     /**
-     * @param \SprykerAzure\Client\Builder\Plugin\RequestPluginInterface $requestPlugin
+     * @param \SprykerAzure\Client\Plugin\Request\RequestPluginInterface $requestPlugin
      *
      * @return void
      */

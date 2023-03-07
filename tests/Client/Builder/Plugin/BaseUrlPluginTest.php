@@ -12,7 +12,7 @@ namespace SprykerAzureTest\Client\Builder\Plugin;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Uri;
 use PHPUnit\Framework\TestCase;
-use SprykerAzure\Client\Builder\Plugin\BaseUrlPlugin;
+use SprykerAzure\Client\Plugin\Request\BaseUrlPlugin;
 
 class BaseUrlPluginTest extends TestCase
 {

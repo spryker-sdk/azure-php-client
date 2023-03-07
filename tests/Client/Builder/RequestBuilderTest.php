@@ -11,8 +11,8 @@ namespace SprykerAzureTest\Client\Builder;
 
 use GuzzleHttp\Psr7\Uri;
 use PHPUnit\Framework\TestCase;
-use SprykerAzure\Client\Builder\Plugin\BaseUrlPlugin;
 use SprykerAzure\Client\Builder\RequestBuilder;
+use SprykerAzure\Client\Plugin\Request\BaseUrlPlugin;
 
 class RequestBuilderTest extends TestCase
 {

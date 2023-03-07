@@ -11,7 +11,7 @@ namespace SprykerAzureTest\Client\Builder\Plugin;
 
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
-use SprykerAzure\Client\Builder\Plugin\ResponseBodyJsonDeserializerPlugin;
+use SprykerAzure\Client\Plugin\Response\ResponseBodyJsonDeserializerPlugin;
 
 class ResponseBodyJsonDeserializerPluginTest extends TestCase
 {

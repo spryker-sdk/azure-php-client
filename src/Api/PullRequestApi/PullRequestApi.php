@@ -21,6 +21,11 @@ class PullRequestApi implements PullRequestApiInterface
     /**
      * @var string
      */
+    protected const PR_WEB_URL = 'https://dev.azure.com/%s/%s/_git/%s/pullrequest/%s';
+
+    /**
+     * @var string
+     */
     protected const REF_HEADS_PREFIX = 'refs/heads/';
 
     /**
@@ -70,7 +75,9 @@ class PullRequestApi implements PullRequestApiInterface
 
         $response = $this->httpClient->sendRequest($request);
 
-        return $this->responseDataBuilder->getResponseData($response);
+        $responseData = $this->responseDataBuilder->getResponseData($response);
+
+        return $this->addPullRequestWebUrl($responseData, $targetRepository);
     }
 
     /**
@@ -112,5 +119,24 @@ class PullRequestApi implements PullRequestApiInterface
         }
 
         return json_encode($data, \JSON_THROW_ON_ERROR);
+    }
+
+    /**
+     * @param array<mixed> $responseData
+     * @param \SprykerAzure\Api\RepositoryPath $targetRepository
+     *
+     * @return array<mixed>
+     */
+    protected function addPullRequestWebUrl(array $responseData, RepositoryPath $targetRepository): array
+    {
+        $responseData['webUrl'] = sprintf(
+            static::PR_WEB_URL,
+            $targetRepository->getOrganizationName(),
+            $targetRepository->getProjectName(),
+            $targetRepository->getRepositoryId(),
+            $responseData['pullRequestId'] ?? '',
+        );
+
+        return $responseData;
     }
 }

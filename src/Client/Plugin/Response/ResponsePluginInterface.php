@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerAzure\Client\Builder\Plugin;
+namespace SprykerAzure\Client\Plugin\Response;
 
 use Psr\Http\Message\ResponseInterface;
 

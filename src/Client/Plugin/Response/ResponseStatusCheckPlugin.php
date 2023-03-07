@@ -7,13 +7,13 @@
 
 declare(strict_types=1);
 
-namespace SprykerAzure\Client\Builder\Plugin;
+namespace SprykerAzure\Client\Plugin\Response;
 
 use Psr\Http\Message\ResponseInterface;
 use SprykerAzure\Exception\InvalidClientRequestException;
 use SprykerAzure\Exception\ServerErrorResponseException;
 
-class ResponseThrowablePlugin implements ResponsePluginInterface
+class ResponseStatusCheckPlugin implements ResponsePluginInterface
 {
     /**
      * @param \Psr\Http\Message\ResponseInterface $response
