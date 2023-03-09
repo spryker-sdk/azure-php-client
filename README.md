@@ -14,3 +14,21 @@ Require the library in your project:
 ```
 composer require spryker-sdk/azure-php-client
 ```
+
+## Usage
+
+```php
+use SprykerAzure\Client\Plugin\Request\PersonalAccessTokenAuthPlugin;
+use SprykerAzure\Client\ClientFactory;
+
+$clientFactory = new ClientFactory();
+
+$requestBuilder = $clientFactory->getDefaultRequestBuilder();
+$requestBuilder->addRequestPlugin(new PersonalAccessTokenAuthPlugin('Personal Access Token'));
+
+$client = $clientFactory->createClient($requestBuilder);
+
+
+$response = $this->azureClientFactory->getClient()->getPullRequestApi()->createPullRequest(...);
+$response = $this->azureClientFactory->getClient()->getRepositoryApi()->getRepositoryInfo(...);
+```
