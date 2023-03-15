@@ -27,13 +27,23 @@ class ResponseStatusCheckPlugin implements ResponsePluginInterface
     public function apply(ResponseInterface $response, array $responseData): array
     {
         if ($response->getStatusCode() >= 400 && $response->getStatusCode() < 500) {
-            throw new InvalidClientRequestException((string)$response->getBody());
+            throw new InvalidClientRequestException($this->getErrorMessage($response));
         }
 
         if ($response->getStatusCode() >= 500) {
-            throw new ServerErrorResponseException((string)$response->getBody());
+            throw new ServerErrorResponseException($this->getErrorMessage($response));
         }
 
         return $responseData;
+    }
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface $response
+     *
+     * @return string
+     */
+    protected function getErrorMessage(ResponseInterface $response): string
+    {
+        return sprintf('Invalid azure response: %s %s', $response->getStatusCode(), (string)$response->getBody());
     }
 }
